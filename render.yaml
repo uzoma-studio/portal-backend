@@ -1,8 +1,8 @@
 services:
   - type: web
-    name: strapi
+    name: strapi-staging
     env: node
-    plan: starter
+    plan: free
     buildCommand: yarn install && yarn build
     startCommand: rsync -a public/ /data/public/ && yarn start
     healthCheckPath: /_health
@@ -15,7 +15,7 @@ services:
       - key: NODE_VERSION
         value: ~20.12.2
       - key: NODE_ENV
-        value: production
+        value: staging
       - key: DATABASE_FILENAME
         value: /data/strapi.db
       - key: JWT_SECRET
