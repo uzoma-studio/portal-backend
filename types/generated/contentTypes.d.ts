@@ -840,6 +840,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     Body: Attribute.Blocks;
     Slug: Attribute.UID<'api::page.page', 'Title'>;
     Content: Attribute.Enumeration<['Blog', 'Files', 'Shop', 'Portfolio']>;
+    CoverImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
