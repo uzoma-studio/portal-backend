@@ -4,7 +4,8 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page"
+    "displayName": "Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,15 @@
     "Slug": {
       "type": "uid",
       "targetField": "Title"
+    },
+    "Content": {
+      "type": "enumeration",
+      "enum": [
+        "Blog",
+        "Files",
+        "Shop",
+        "Portfolio"
+      ]
     }
   }
 }
