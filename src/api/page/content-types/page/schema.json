@@ -28,20 +28,26 @@
       "type": "enumeration",
       "enum": [
         "Blog",
-        "Files",
+        "Archive",
         "Shop",
         "Portfolio"
       ]
     },
     "CoverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "ContentIDArchive": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::archive.archive"
     }
   }
 }

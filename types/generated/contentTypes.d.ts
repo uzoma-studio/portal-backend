@@ -788,6 +788,37 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArchiveArchive extends Schema.CollectionType {
+  collectionName: 'archives';
+  info: {
+    singularName: 'archive';
+    pluralName: 'archives';
+    displayName: 'Archive';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    DriveID: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::archive.archive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::archive.archive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBlogPostBlogPost extends Schema.CollectionType {
   collectionName: 'blog_posts';
   info: {
@@ -839,8 +870,13 @@ export interface ApiPagePage extends Schema.CollectionType {
     Title: Attribute.String & Attribute.Required & Attribute.Unique;
     Body: Attribute.Blocks;
     Slug: Attribute.UID<'api::page.page', 'Title'>;
-    Content: Attribute.Enumeration<['Blog', 'Files', 'Shop', 'Portfolio']>;
+    Content: Attribute.Enumeration<['Blog', 'Archive', 'Shop', 'Portfolio']>;
     CoverImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    ContentIDArchive: Attribute.Relation<
+      'api::page.page',
+      'oneToOne',
+      'api::archive.archive'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -901,6 +937,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::archive.archive': ApiArchiveArchive;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::page.page': ApiPagePage;
       'api::setting.setting': ApiSettingSetting;

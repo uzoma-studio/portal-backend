@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "archives",
+  "info": {
+    "singularName": "archive",
+    "pluralName": "archives",
+    "displayName": "Archive"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "DriveID": {
+      "type": "string"
+    }
+  }
+}

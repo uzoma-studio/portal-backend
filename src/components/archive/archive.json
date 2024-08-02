@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_archive_archives",
+  "info": {
+    "displayName": "Archive"
+  },
+  "options": {},
+  "attributes": {
+    "archive": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::archive.archive"
+    }
+  }
+}
