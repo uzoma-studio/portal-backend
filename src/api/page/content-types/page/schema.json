@@ -48,6 +48,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::archive.archive"
+    },
+    "site": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site.site",
+      "inversedBy": "pages"
     }
   }
 }

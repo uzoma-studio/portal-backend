@@ -877,6 +877,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       'oneToOne',
       'api::archive.archive'
     >;
+    site: Attribute.Relation<'api::page.page', 'manyToOne', 'api::site.site'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -919,6 +920,31 @@ export interface ApiSettingSetting extends Schema.SingleType {
   };
 }
 
+export interface ApiSiteSite extends Schema.CollectionType {
+  collectionName: 'sites';
+  info: {
+    singularName: 'site';
+    pluralName: 'sites';
+    displayName: 'Site';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    siteName: Attribute.String & Attribute.Required & Attribute.Unique;
+    siteId: Attribute.UID<'api::site.site', 'siteName'> & Attribute.Required;
+    siteDescription: Attribute.Text;
+    pages: Attribute.Relation<'api::site.site', 'oneToMany', 'api::page.page'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::site.site', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::site.site', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -941,6 +967,7 @@ declare module '@strapi/types' {
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::page.page': ApiPagePage;
       'api::setting.setting': ApiSettingSetting;
+      'api::site.site': ApiSiteSite;
     }
   }
 }
